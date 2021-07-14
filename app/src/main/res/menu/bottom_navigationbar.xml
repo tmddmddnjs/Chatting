@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/friends_menu"
+        android:title="@string/friends_title"
+        android:icon="@drawable/ic_baseline_people_alt_24"
+        android:enabled="true"/>
+    <item android:id="@+id/chatting_menu"
+        android:title="@string/chatting_title"
+        android:icon="@drawable/ic_baseline_chat_24"
+        android:enabled="true"
+        />
+    <item android:id="@+id/search_menu"
+        android:title="@string/search_title"
+        android:icon="@drawable/ic_baseline_android_24"
+        android:enabled="true"/>
+</menu>
