@@ -2,9 +2,7 @@ package com.example.chatting.signup;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.JsonReader;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,9 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.chatting.MainActivity;
 import com.example.chatting.R;
-import com.example.chatting.RestAPITask;
-
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -84,8 +79,27 @@ public class login extends AppCompatActivity {
         testbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RestAPITask rest = new RestAPITask("http://180.83.98.139:3000/login");
-                testtext.setText(rest+"");
+                String result = null;
+                try {
+                    // Open the connection
+                    URL url = new URL("http://180.83.98.139:3000/login");
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("GET");
+                    InputStream is = conn.getInputStream();
+                    // Get the stream
+                    StringBuilder builder = new StringBuilder();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        builder.append(line+"\n");
+                    } // Set the result
+                    result = builder.toString();
+                } catch (Exception e) {
+                    // Error calling the rest api
+                    Log.e("REST_API", "GET method failed: " + e.getMessage());
+                    e.printStackTrace();
+                }
+                Log.d("TAG", "좆기훈하트제성덕" + result);
             }
         });
     }
